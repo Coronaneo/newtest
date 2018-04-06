@@ -1,3 +1,4 @@
+addpath(genpath(pwd))
 format long
 nj=128;
 ms=128;

@@ -1,4 +1,4 @@
-
+addpath(genpath(pwd))
 format long
 nj=128;
 ms=128;
@@ -28,7 +28,6 @@ fhat =  sum(U.*M,2);
 %R=conj(V);
 %r=size(V,2);
 error1=norm(fhat-fhat2*nj)/norm(fhat)
-
 
 fid=fopen('./nufftQY/Ur1.txt','w');
 fprintf(fid,'%12.16f %12.16f %12.16f %12.16f %12.16f %12.16f %12.16f %12.16f\r\n',U.');
