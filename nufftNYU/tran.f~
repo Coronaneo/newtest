@@ -1,0 +1,3 @@
+      program tran
+      open(unit=10,file='M1r.txt')
+      end

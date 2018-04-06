@@ -1,0 +1,32 @@
+       
+      
+      program testfft
+      !include 'fftw3.f'
+      integer nj,i
+      parameter (nj=32)
+      real*8 a(nj),b(nj)
+      double complex in, out
+      dimension in(nj), out(nj)
+      integer*8 plan
+      
+      call dfftw_plan_dft_1d(plan,nj,in,out,FFTW_FORWARD,FFTW_MEASURE)
+      do i=1,nj
+         a(i)=1.0000*i/nj
+         b(i)=i
+      enddo
+      in=dcmplx(a,b)
+      do i=1,nj
+         print *,i,in(i)
+      enddo
+      print *,' '
+      print *,plan
+      call dfftw_execute_dft(plan, in, out)
+      do i=1,nj
+         print *,i,out(i)
+      enddo
+
+      call dfftw_destroy_plan(plan)
+      
+
+      
+      end
