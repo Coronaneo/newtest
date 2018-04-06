@@ -54,16 +54,16 @@ fk=fk(:);
 %error1 = norm(fhat-fhat1,2)/norm(fhat,2)
 error2 = norm(fhat-fk)/norm(fk)
 
-fid=fopen('U2r2.txt','w');
+fid=fopen('./nufftQY/U2r2.txt','w');
 fprintf(fid,'%12.16f %12.16f %12.16f %12.16f %12.16f %12.16f %12.16f %12.16f %12.16f %12.16f %12.16f %12.16f\r\n',U.');
 fclose(fid);
-fid=fopen('V2r2.txt','w');
+fid=fopen('./nufftQY/V2r2.txt','w');
 fprintf(fid,'%12.16f %12.16f %12.16f %12.16f %12.16f %12.16f %12.16f %12.16f %12.16f %12.16f %12.16f %12.16f\r\n',V.');
 fclose(fid);
-fid=fopen('U2i2.txt','w');
+fid=fopen('./nufftQY/U2i2.txt','w');
 fprintf(fid,'%12.16f %12.16f %12.16f %12.16f %12.16f %12.16f %12.16f %12.16f %12.16f %12.16f %12.16f %12.16f\r\n',-1i*U.');
 fclose(fid);
-fid=fopen('V2i2.txt','w');
+fid=fopen('./nufftQY/V2i2.txt','w');
 fprintf(fid,'%12.16f %12.16f %12.16f %12.16f %12.16f %12.16f %12.16f %12.16f %12.16f %12.16f %12.16f %12.16f\r\n',-1i*V.');
 fclose(fid);
 

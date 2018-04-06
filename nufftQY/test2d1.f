@@ -2,7 +2,7 @@
 	implicit none
         
         integer r
-        parameter (r=87)
+        parameter (r=86)
         integer ms
         parameter (ms=64)
         integer nj
@@ -104,7 +104,7 @@
         enddo
         call date_and_time(date,time,zone,values2)
         !print *,'S(1:5)=',S(1:5)
-        time1=sum((values2(5:8)-values1(5:8))*arr)/100
+        time1=sum((values2(5:8)-values1(5:8))*arr)
         print *,' T_our         = ',time1/num
         
         call date_and_time(date,time,zone,values1)

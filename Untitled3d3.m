@@ -91,7 +91,7 @@ error2 = norm(fhat1-fk)/norm(fk)
 fid=fopen('./nufftQY/U3r3.txt','w');
 fprintf(fid,'%12.16f %12.16f %12.16f %12.16f %12.16f %12.16f %12.16f %12.16f %12.16f %12.16f %12.16f %12.16f\r\n',U.');
 fclose(fid);
-fid=fopen(./nufftQY/'V3r3.txt','w');
+fid=fopen('./nufftQY/V3r3.txt','w');
 fprintf(fid,'%12.16f %12.16f %12.16f %12.16f %12.16f %12.16f %12.16f %12.16f %12.16f %12.16f %12.16f %12.16f\r\n',V.');
 fclose(fid);
 fid=fopen('./nufftQY/U3i3.txt','w');
