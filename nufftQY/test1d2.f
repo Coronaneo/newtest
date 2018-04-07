@@ -3,15 +3,15 @@
         integer nj,ns,r,kflag
         parameter (r=12,ns=1048576,kflag=-1)
         parameter (nj=ns)
-        integer i,iflag,xsub(nj),ier,num,mm
+        integer i,iflag,ier,num,mm
+        integer,allocatable :: xsub(:)
         real*16 begin1,end1
         integer*8  time_begin,time_end,countrage,countmax
-        real*16 U1(r,nj),V1(r,ns),U2(r,nj),V2(r,ns)
-        real*16 x(nj),pi,time1,time2
+        real*16,allocatable :: U1(:,:),V1(:,:),U2(:,:),V2(:,:),x(:)
+        real*16 pi,time1,time2
         real*16 arr(4)
         parameter (pi=3.141592653589793238462643383279502884197d0)
-        complex*16 U(r,nj),V(r,ns),c(ns),S(nj)
-        complex*16 fk(nj)
+        complex*16,allocatable :: U(:,:),V(:,:),c(:),S(:),fk(:)
         complex*16,allocatable :: VV(:,:)
         real*8 x1(nj),eps,error
         double complex in1, out1
@@ -25,6 +25,19 @@
         character*10 time
         character*5 zone 
         integer*4 values1(8),values2(8)
+
+        allocate(U1(r,nj))
+        allocate(U2(r,nj)) 
+        allocate(V1(r,ns))
+        allocate(V2(r,ns))
+        allocate(x1(nj))
+        allocate(S(nj))      
+        allocate(U(r,nj)) 
+        allocate(V(r,ns))
+        allocate(c(ns))
+        allocate(fk(nj))
+        allocate(xsub(nj))
+        allocate(x(nj))
         
         arr(1)=3600
         arr(2)=60

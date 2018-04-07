@@ -4,22 +4,23 @@
         integer r,kflag
         parameter (r=102,kflag=-1)
         integer ms
-        parameter (ms=336)
+        parameter (ms=1000)
         integer nj
         parameter (nj=ms*ms)
-        integer i,xsub(nj,2),ier,num,j,xxsub(nj)
-        integer n1,n2,mt,k1,k2,mm,iflag
+        integer,allocatable :: xsub(:,:),xxsub(:)
+        integer n1,n2,mt,k1,k2,mm,iflag,i,ier,num,j
         real*16 begin1,end1
         integer*8  time_begin,time_end,countrage,countmax
-        real*16 U1(r,nj),V1(r,ms*ms),U2(r,nj),V2(r,ms*ms)
-        real*16 re1(nj),re2(nj),time1,time2
+        real*16,allocatable :: U1(:,:),V1(:,:),U2(:,:),V2(:,:)
+        real*16 time1,time2
         real*16 arr(4)
-        real*8 pi,xj(nj),yj(nj)
+        real*8 pi,eps,error
+        real*8,allocatable :: xj(:),yj(:)
         parameter (pi=3.141592653589793238462643383279502884197d0)
-        complex*16 U(nj,r),V(r,ms*ms),cj(nj),S(nj),re(nj)
-        complex*16 fk(ms,ms),fk1(nj),uu(ms,ms,r)
+        complex*16,allocatable :: U(:,:),V(:,:),cj(:),S(:)
+        complex*16,allocatable :: fk(:,:),fk1(:),uu(:,:,:)
         complex*16,allocatable :: NN(:,:,:)
-        real*8 x(nj,2),eps,error
+        real*8,allocatable :: x(:,:)
         double complex in1, out1
         dimension in1(ms,ms), out1(ms,ms)
 	integer*16 :: plan
@@ -31,6 +32,23 @@
         character*10 time
         character*5 zone 
         integer*4 values1(8),values2(8)
+
+        allocate(U1(r,nj))
+        allocate(U2(r,nj)) 
+        allocate(V1(r,ms*ms))
+        allocate(V2(r,ms*ms))
+        allocate(xj(nj))
+        allocate(yj(nj))
+        allocate(S(nj))      
+        allocate(U(nj,r)) 
+        allocate(V(r,ms*ms))
+        allocate(cj(nj))
+        allocate(fk(ms,ms))
+        allocate(fk1(nj))
+        allocate(uu(ms,ms,r))
+        allocate(xsub(nj,2))
+        allocate(x(nj,2))
+        allocate(xxsub(nj))
         
         arr(1)=3600
         arr(2)=60

@@ -4,17 +4,17 @@
         integer*8 nj,ms,nk
         parameter (r=21,ms=1048576)
         parameter (nj=ms,nk=ms)
-        integer*8 i,iflag,xsub(nj),ier,num,ksub(nk)
+        integer*8 i,iflag,ier,num
+        integer*8,allocatable :: xsub(:),ksub(:)
         real*16 begin1,end1
         integer*8  time_begin,time_end,countrage,countmax
-        real*16 U1(r,nk),V1(r,nj),U2(r,nk),V2(r,nj)
-        real*16 x(nj),time1,time2
+        real*16,allocatable :: U1(:,:),V1(:,:),U2(:,:),V2(:,:),x(:)
+        real*16 time1,time2
         real*16 arr(4)
-        real*8 pi
+        real*8 pi,eps,error
         parameter (pi=3.141592653589793238462643383279502884197d0)
-        complex*16 c(nj),S(nk),U(r,nk),V(r,nj)
-        complex*16 fk(nk)
-        real*8 x1(nj),eps,error,k(nk)
+        complex*16,allocatable :: c(:),S(:),U(:,:),V(:,:),fk(:)
+        real*8,allocatable :: x1(:),k(:)
         double complex in1, out1
         dimension in1(ms), out1(ms)
 	integer*8 :: plan
@@ -26,6 +26,21 @@
         character*10 time
         character*5 zone 
         integer*4 values1(8),values2(8)
+
+        allocate(U1(r,nk))
+        allocate(U2(r,nk)) 
+        allocate(V1(r,nj))
+        allocate(V2(r,nj))
+        allocate(x1(nj))
+        allocate(S(nk))      
+        allocate(U(r,nk)) 
+        allocate(V(r,nj))
+        allocate(c(nj))
+        allocate(fk(nk))
+        allocate(xsub(nj))
+        allocate(x(nj))
+        allocate(k(nk))
+        allocate(ksub(nk))
         
         arr(1)=3600
         arr(2)=60

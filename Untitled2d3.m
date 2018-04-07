@@ -1,6 +1,6 @@
 addpath(genpath(pwd))
 format long
-a = 336;
+a = 1000;
 n1=a;
 n2=a;
 ms=a;
@@ -36,11 +36,11 @@ k=[sk(:) tk(:)];
 
 fftconst = iflag*1i/ms*2*pi;
 ratiofun = @(k,x)exp(fftconst*(k-round(k))*x');
-[U,V] = lowrank(k,x/2/pi*ms,ratiofun,eps,800,800);
+[U,V] = lowrank(k,x/2/pi*ms,ratiofun,eps,15000,15000);
 
 ksub = mod(round(k),ms)+1;
 kksub = sub2ind([ms ms],ksub(:,1),ksub(:,2));
-nufft2fun = nufft2III(k,x/2/pi*ms,iflag,ms,800,eps);
+nufft2fun = nufft2III(k,x/2/pi*ms,iflag,ms,15000,eps);
 fhat1=nufft2fun(cj);
 %fhat1=fhat1/nj;
 
@@ -54,7 +54,7 @@ M = repmat(conj(V),1,ncol).*reshape(repmat(cj,r,1), n, r*ncol);
     ratiofun = @(k,x)exp(fftconst*k*(x-round(x))');
     [k1,k2] = ndgrid(0:ms-1);
     k=[k1(:) k2(:)];
-    [U1,V1] = lowrank(k,x/2/pi*ms,ratiofun,eps,800,800);
+    [U1,V1] = lowrank(k,x/2/pi*ms,ratiofun,eps,15000,15000);
     size1=size(U1)
     size2=size(V1)
     xsub = mod(round(x/2/pi*ms),ms)+1;

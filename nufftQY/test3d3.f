@@ -4,7 +4,7 @@
         integer r,r1
         parameter (r=74,r1=560)
         integer ms
-        parameter (ms=48)
+        parameter (ms=64)
         integer nj
         parameter (nj=ms*ms*ms)
         integer nk

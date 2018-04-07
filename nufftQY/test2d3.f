@@ -4,23 +4,24 @@
         integer r,r1
         parameter (r=43,r1=102)
         integer ms
-        parameter (ms=336)
+        parameter (ms=1000)
         integer nj
         parameter (nj=ms*ms)
         integer nk
         parameter (nk=ms*ms)
-        integer i,iflag,xsub(nj,2),ier,num,j,xxsub(nj)
-        integer n1,n2,mt,k1,k2,mm,ksub(nk,2),kksub(nk)
+        integer i,iflag,ier,num,j,n1,n2,mt,k1,k2,mm
+        integer,allocatable :: ksub(:,:),kksub(:),xsub(:,:),xxsub(:)
         integer*8  time_begin,time_end,countrage,countmax
-        real*16 U1(r,nk),V1(r,nj),U2(r,nk),V2(r,nj)
-        real*16 re1(nj),re2(nj),time1,time2
-        real*16 arr(4),UU1(r1,ms*ms),VV1(r1,nj),UU2(r1,ms*ms),VV2(r1,nj)
-        real*8 pi,xj(nj),yj(nj)
+        real*16,allocatable :: U1(:,:),V1(:,:),U2(:,:),V2(:,:)
+        real*16 time1,time2,arr(4)
+        real*16,allocatable :: UU1(:,:),VV1(:,:),UU2(:,:),VV2(:,:)
+        real*8 pi,
+        real*8,allocatable :: xj(:),yj(:),x(:,:),k(:,:),sk(:),tk(:)
         parameter (pi=3.141592653589793238462643383279502884197d0)
-        complex*16 U(r,nk),V(r,nj),cj(nj),S(nk),re(nj)
-        complex*16 fk(ms,ms),fk1(nj),UU(ms*ms,r1),VV(r1,nj)
+        complex*16,allocatable :: U(:,:),V(:,:),cj(:),S(:)
+        complex*16,allocatable :: fk(:,:),fk1(:),UU(:,:),VV(:,:)
         complex*16,allocatable :: NN(:,:,:)
-        real*8 x(nj,2),eps,error,k(nk,2),sk(nk),tk(nk)
+        real*8 eps,error
         double complex in1, out1
         dimension in1(ms,ms), out1(ms,ms)
 	integer*16 :: plan
@@ -32,6 +33,33 @@
         character*10 time
         character*5 zone 
         integer*4 values1(8),values2(8)
+    
+        allocate(U1(r,nk))
+        allocate(U2(r,nk)) 
+        allocate(V1(r,nj))
+        allocate(V2(r,nj))
+        allocate(UU1(r1,ms*ms))
+        allocate(UU2(r1,ms*ms)) 
+        allocate(VV1(r1,nj))
+        allocate(VV2(r1,nj))
+        allocate(xj(nj))
+        allocate(yj(nj))
+        allocate(S(nk))      
+        allocate(U(r,nk)) 
+        allocate(V(r,nj))
+        allocate(cj(nj))
+        allocate(fk(ms,ms))
+        allocate(fk1(ms*ms))
+        allocate(UU(ms*ms,r1))
+        allocate(VV(r1,nj))
+        allocate(sk(nk))
+        allocate(tk(nk))
+        allocate(xsub(nj,2))
+        allocate(x(nj,2))
+        allocate(xxsub(nj))
+        allocate(ksub(nk,2))
+        allocate(k(nk,2))
+        allocate(kksub(nk))
         
         arr(1)=3600
         arr(2)=60

@@ -1,6 +1,6 @@
 addpath(genpath(pwd))
 format long
-a = 336;
+a = 1000;
 n1=a;
 n2=a;
 ms=a;
@@ -29,7 +29,7 @@ k=[k1(:) k2(:)];
 
 fftconst = iflag*1i/ms*2*pi;
 ratiofun = @(k,x)exp(fftconst*k*(x-round(x))');
-[U,V] = lowrank(k,x/2/pi*ms,ratiofun,eps,500,500);
+[U,V] = lowrank(k,x/2/pi*ms,ratiofun,eps,10000,10000);
 xsub = mod(round(x/2/pi*ms),ms)+1;
 xxsub = sub2ind([ms ms],xsub(:,1),xsub(:,2));
 spPerm = sparse(xxsub,1:nj,ones(1,nj),ms^2,nj);
