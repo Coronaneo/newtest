@@ -4,7 +4,7 @@
         integer r,kflag
         parameter (r=563,kflag=-1)
         integer ms
-        parameter (ms=64)
+        parameter (ms=48)
         integer nj
         parameter (nj=ms*ms*ms)
         integer i,iflag,ier,num,j
@@ -60,7 +60,7 @@
 
 
         iflag=-1
-        eps=1E-12
+        eps=1E-8
         num=1
         
         open(unit = 10,file = 'U3r2.txt')

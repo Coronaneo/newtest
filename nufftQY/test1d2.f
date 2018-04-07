@@ -1,7 +1,7 @@
 	program test
 	implicit none
         integer nj,ns,r,kflag
-        parameter (r=12,ns=1048576,kflag=-1)
+        parameter (r=12,ns=131072,kflag=-1)
         parameter (nj=ns)
         integer i,iflag,ier,num,mm
         integer,allocatable :: xsub(:)
@@ -44,7 +44,7 @@
         arr(3)=1
         arr(4)=0.001
 
-        eps=1E-12
+        eps=1E-8
         num=100
         open(unit = 10,file = 'Ur2.txt')
         read(10,*) U1

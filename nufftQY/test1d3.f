@@ -2,7 +2,7 @@
 	implicit none
         integer r
         integer*8 nj,ms,nk
-        parameter (r=21,ms=1048576)
+        parameter (r=21,ms=131072)
         parameter (nj=ms,nk=ms)
         integer*8 i,iflag,ier,num
         integer*8,allocatable :: xsub(:),ksub(:)
@@ -48,7 +48,7 @@
         arr(4)=0.001
 
         iflag=-1
-        eps=1d-12
+        eps=1d-8
         num=100
         open(unit = 10,file = 'Ur3.txt')
         read(10,*) U1

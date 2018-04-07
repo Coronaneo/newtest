@@ -4,7 +4,7 @@
         integer r,r1
         parameter (r=43,r1=102)
         integer ms
-        parameter (ms=1000)
+        parameter (ms=336)
         integer nj
         parameter (nj=ms*ms)
         integer nk
@@ -68,7 +68,7 @@
 
 
         iflag=-1
-        eps=1E-12
+        eps=1E-8
         num=10
         
         open(unit = 10,file = 'U2r3.txt')

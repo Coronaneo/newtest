@@ -1,12 +1,12 @@
 addpath(genpath(pwd))
 format long
-a = 1000;
+a = 336;
 n1=a;
 n2=a;
 ms=a;
 mt=a;
 nj=n1*n2;
-eps=1e-12;
+eps=1e-8;
 iflag=-1;
 xj=zeros(nj,1);
 yj=zeros(nj,1);

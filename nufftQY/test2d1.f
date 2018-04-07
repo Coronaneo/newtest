@@ -4,7 +4,7 @@
         integer r
         parameter (r=102)
         integer ms
-        parameter (ms=1000)
+        parameter (ms=336)
         integer nj
         parameter (nj=ms*ms)
         integer,allocatable :: xsub(:,:),xxsub(:)
@@ -57,7 +57,7 @@
 
 
         iflag=-1
-        eps=1E-12
+        eps=1E-8
         num=30
         
         open(unit = 10,file = 'U2r1.txt')

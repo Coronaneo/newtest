@@ -1,6 +1,6 @@
 addpath(genpath(pwd))
 format long
-a=1048576;
+a=131072;
 nj=a;
 ms=a;
 xj=(1:nj)'*pi/8;
@@ -9,7 +9,7 @@ k=0:(ms-1);
 k=k';
 k1=-ms/2:(ms/2-1);
 k1=k1';
-tol=1e-12;
+tol=1e-8;
 fhat1=DeCom_NUFFT1D_I(cj,xj/nj,k1,tol);
 fhat2=nufft1d1(nj,xj/nj*2*pi,cj,-1,tol,ms);
 error=norm(fhat1-fhat2*nj)/norm(fhat1)
