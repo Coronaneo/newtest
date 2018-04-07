@@ -4,9 +4,9 @@
         integer r
         parameter (r=86)
         integer ms
-        parameter (ms=64)
+        parameter (ms=336)
         integer nj
-        parameter (nj=4096)
+        parameter (nj=ms*ms)
         integer i,iflag,xsub(nj,2),ier,num,j,xxsub(nj)
         integer n1,n2,mt,k1,k2,mm
         real*16 begin1,end1
@@ -40,7 +40,7 @@
 
         iflag=-1
         eps=1E-12
-        num=1
+        num=30
         
         open(unit = 10,file = 'U2r1.txt')
         read(10,*) U1

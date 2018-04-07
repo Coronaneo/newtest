@@ -1,7 +1,7 @@
 	program test
 	implicit none
         integer nj,ns,r,mm,kflag
-        parameter (r=12,ns=128,kflag=-1)
+        parameter (r=12,ns=131072,kflag=-1)
         parameter (nj=ns)
         integer i,iflag,xsub(nj),ier,num
         real*16 begin1,end1
@@ -34,7 +34,7 @@
 
         iflag=-1
         eps=1E-12
-        num=1000
+        num=100
         open(unit = 10,file = 'Ur1.txt')
         read(10,*) U1
         open(unit = 20,file = 'Vr1.txt')

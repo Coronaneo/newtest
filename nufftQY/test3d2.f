@@ -4,7 +4,7 @@
         integer r,kflag
         parameter (r=125,kflag=-1)
         integer ms
-        parameter (ms=12)
+        parameter (ms=32)
         integer nj
         parameter (nj=ms*ms*ms)
         integer i,xsub(nj,3),ier,num,j,xxsub(nj)
@@ -40,7 +40,7 @@
 
         iflag=-1
         eps=1E-12
-        num=100
+        num=1
         
         open(unit = 10,file = 'U3r2.txt')
         read(10,*) U1

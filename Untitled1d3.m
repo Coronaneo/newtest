@@ -1,8 +1,9 @@
 addpath(genpath(pwd))
 format long
-a=16384;
+a=131072;
 nj=a;
-ms=a;
+ms=a
+nk=a;
 xj=sin(-pi*[1:nj]/nj)/2*nj;
 cj=exp(1i*pi*[1:nj]/nj)';
 k=0:(ms-1);

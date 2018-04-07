@@ -1,6 +1,6 @@
 addpath(genpath(pwd))
 format long
-a=16384;
+a=131072;
 nj=a;
 ms=a;
 xj=(1:nj)'*pi/8;
@@ -17,7 +17,7 @@ fftconst = -1*1i/ms*2*pi;
 fun = @(k,x)exp(fftconst*k*(x-round(x))');
 %K=13;
 
-[U,V] = lowrank(k1,xj,fun,tol,15,15);
+[U,V] = lowrank(k1,xj,fun,tol,50,50);
 xsub = mod(round(xj),ms)+1;
 r=size(V,2)
 Id = sparse(xsub,1:nj,ones(1,nj),ms,nj);

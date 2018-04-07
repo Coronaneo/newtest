@@ -84,7 +84,7 @@ if gamma < 1e-16 % safe guard
 else
     % randomized low-rank factorization
     fun = @(k,x) exp(-2*pi*i*(k*x'*N-round(k)*round(x*N)')/N);
-    [U,S,V] = lowrank(k(:),x(:),fun,tol,8*K,8*K);
+    [U,S,V] = lowrank(k(:),x(:),fun,tol,10*K,10*K);
     L = U*S;
     R = conj(V);
     %err = norm(B-L*transpose(R))/norm(B);
