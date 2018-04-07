@@ -1,6 +1,6 @@
 addpath(genpath(pwd))
 format long
-a = 32;
+a = 48;
 ms = a;
 mt = a;
 mu = a;
@@ -34,7 +34,7 @@ k = [k1(:) k2(:) k3(:)];
 
 fftconst = iflag*1i/ms*2*pi;
 ratiofun = @(x,k)exp(fftconst*(x-round(x))*k');
-[U,V] = lowrank(x/2/pi*ms,k,ratiofun,eps,2000,2000);
+[U,V] = lowrank(x/2/pi*ms,k,ratiofun,eps,3000,3000);
 
 xsub = mod(round(x/2/pi*ms),ms)+1;
 xxsub = sub2ind([ms ms ms],xsub(:,1),xsub(:,2),xsub(:,3));

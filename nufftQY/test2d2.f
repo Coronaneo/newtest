@@ -2,7 +2,7 @@
 	implicit none
         
         integer r,kflag
-        parameter (r=88,kflag=-1)
+        parameter (r=102,kflag=-1)
         integer ms
         parameter (ms=336)
         integer nj

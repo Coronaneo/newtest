@@ -1,7 +1,7 @@
 	program test
 	implicit none
         integer nj,ns,r,mm,kflag
-        parameter (r=12,ns=131072,kflag=-1)
+        parameter (r=12,ns=1048576,kflag=-1)
         parameter (nj=ns)
         integer i,iflag,xsub(nj),ier,num
         real*16 begin1,end1

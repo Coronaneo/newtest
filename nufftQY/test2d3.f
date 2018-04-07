@@ -2,7 +2,7 @@
 	implicit none
         
         integer r,r1
-        parameter (r=42,r1=95)
+        parameter (r=43,r1=102)
         integer ms
         parameter (ms=336)
         integer nj

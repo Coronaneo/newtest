@@ -1,9 +1,10 @@
 	program test
 	implicit none
-        integer nj,ms,r,nk
-        parameter (r=57,ms=131072)
+        integer r
+        integer*8 nj,ms,nk
+        parameter (r=21,ms=1048576)
         parameter (nj=ms,nk=ms)
-        integer i,iflag,xsub(nj),ier,num,ksub(nk)
+        integer*8 i,iflag,xsub(nj),ier,num,ksub(nk)
         real*16 begin1,end1
         integer*8  time_begin,time_end,countrage,countmax
         real*16 U1(r,nk),V1(r,nj),U2(r,nk),V2(r,nj)

@@ -1,6 +1,6 @@
 addpath(genpath(pwd))
 format long
-a=131072;
+a=1048576;
 nj=a;
 ms=a
 nk=a;

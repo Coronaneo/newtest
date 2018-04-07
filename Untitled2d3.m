@@ -36,11 +36,11 @@ k=[sk(:) tk(:)];
 
 fftconst = iflag*1i/ms*2*pi;
 ratiofun = @(k,x)exp(fftconst*(k-round(k))*x');
-[U,V] = lowrank(k,x/2/pi*ms,ratiofun,eps,500,500);
+[U,V] = lowrank(k,x/2/pi*ms,ratiofun,eps,800,800);
 
 ksub = mod(round(k),ms)+1;
 kksub = sub2ind([ms ms],ksub(:,1),ksub(:,2));
-nufft2fun = nufft2III(k,x/2/pi*ms,iflag,ms,500,eps);
+nufft2fun = nufft2III(k,x/2/pi*ms,iflag,ms,800,eps);
 fhat1=nufft2fun(cj);
 %fhat1=fhat1/nj;
 
@@ -54,7 +54,7 @@ M = repmat(conj(V),1,ncol).*reshape(repmat(cj,r,1), n, r*ncol);
     ratiofun = @(k,x)exp(fftconst*k*(x-round(x))');
     [k1,k2] = ndgrid(0:ms-1);
     k=[k1(:) k2(:)];
-    [U1,V1] = lowrank(k,x/2/pi*ms,ratiofun,eps,200,200);
+    [U1,V1] = lowrank(k,x/2/pi*ms,ratiofun,eps,800,800);
     size1=size(U1)
     size2=size(V1)
     xsub = mod(round(x/2/pi*ms),ms)+1;
@@ -75,13 +75,6 @@ fhat = sum(U.*MMM,2);
 
 %fhat = fhat/nj;
 
-[fk,ier]=nufft2d3(nj,xj,yj,cj,iflag,eps,nk,sk,tk);
-
-
-fk=fk(:);
-%error1 = norm(fhat-fhat1,2)/norm(fhat,2)
-error1 = norm(fhat-fk)/norm(fk)
-error2 = norm(fhat1-fk)/norm(fk)
 
 fid=fopen('./nufftQY/U2r3.txt','w');
 fprintf(fid,'%12.16f %12.16f %12.16f %12.16f %12.16f %12.16f %12.16f %12.16f %12.16f %12.16f %12.16f %12.16f\r\n',U.');
@@ -107,4 +100,10 @@ fclose(fid);
 fid=fopen('./nufftQY/VV2i3.txt','w');
 fprintf(fid,'%12.16f %12.16f %12.16f %12.16f %12.16f %12.16f %12.16f %12.16f %12.16f %12.16f %12.16f %12.16f\r\n',-1i*V1.');
 fclose(fid);
+[fk,ier]=nufft2d3(nj,xj,yj,cj,iflag,eps,nk,sk,tk);
 
+
+fk=fk(:);
+%error1 = norm(fhat-fhat1,2)/norm(fhat,2)
+error1 = norm(fhat-fk)/norm(fk)
+error2 = norm(fhat1-fk)/norm(fk)
