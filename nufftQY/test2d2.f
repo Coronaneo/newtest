@@ -56,7 +56,7 @@
         arr(4)=0.001
 
         iflag=-1
-        eps=1E-8
+        eps=1E-4
         num=30
         
         open(unit = 10,file = 'U2r2.txt')

@@ -47,7 +47,7 @@
 
 
         iflag=-1
-        eps=1E-8
+        eps=1E-4
         num=100
         open(unit = 10,file = 'Ur1.txt')
         read(10,*) U1

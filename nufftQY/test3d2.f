@@ -60,7 +60,7 @@
 
 
         iflag=-1
-        eps=1E-8
+        eps=1E-4
         num=1
         
         open(unit = 10,file = 'U3r2.txt')

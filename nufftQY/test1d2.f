@@ -44,7 +44,7 @@
         arr(3)=1
         arr(4)=0.001
 
-        eps=1E-8
+        eps=1E-4
         num=100
         open(unit = 10,file = 'Ur2.txt')
         read(10,*) U1

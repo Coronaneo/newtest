@@ -48,7 +48,7 @@
         arr(4)=0.001
 
         iflag=-1
-        eps=1d-8
+        eps=1d-4
         num=100
         open(unit = 10,file = 'Ur3.txt')
         read(10,*) U1

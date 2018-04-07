@@ -10,7 +10,7 @@ k=0:(ms-1);
 k=k';
 
 k1=48*cos(pi*[1:ms]/ms);
-tol=1e-8;
+tol=1e-4;
 [fhat1,ffun,U,V]=DeCom_NUFFT1D_III(cj,xj/nj,k1,tol);
 fhat2=nufft1d3(nj,xj/nj*2*pi,cj,-1,tol,nk,k1);
 error=norm(fhat1-fhat2)/norm(fhat1)
