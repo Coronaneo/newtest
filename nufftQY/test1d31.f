@@ -1,20 +1,19 @@
 	program test
 	implicit none
-        integer r
-        integer*8 nj,ms,nk
+        integer nj,ms,r,nk
         parameter (r=6,ms=131072)
         parameter (nj=ms,nk=ms)
-        integer*8 i,iflag,ier,num
-        integer*8 xsub(nj),ksub(nk)
+        integer i,iflag,xsub(nj),ier,num,ksub(nk)
         real*16 begin1,end1
         integer*8  time_begin,time_end,countrage,countmax
-        real*16 U1(r,nk),V1(r,nj),U2(r,nk),V2(r,nj),x(nj)
-        real*16 time1,time2
+        real*16 U1(r,nk),V1(r,nj),U2(r,nk),V2(r,nj)
+        real*16 x(nj),time1,time2
         real*16 arr(4)
-        real*8 pi,eps,error
+        real*8 pi
         parameter (pi=3.141592653589793238462643383279502884197d0)
-        complex*16 c(nj),S(nk),U(r,nk),V(r,nj),fk(nk)
-        real*8 x1(nj),k(nk)
+        complex*16 c(nj),S(nk),U(r,nk),V(r,nj)
+        complex*16 fk(nk)
+        real*8 x1(nj),eps,error,k(nk)
         double complex in1, out1
         dimension in1(ms), out1(ms)
 	integer*8 :: plan
@@ -26,21 +25,6 @@
         character*10 time
         character*5 zone 
         integer*4 values1(8),values2(8)
-
-        !allocate(U1(r,nk))
-        !allocate(U2(r,nk)) 
-        !allocate(V1(r,nj))
-        !allocate(V2(r,nj))
-        !allocate(x1(nj))
-        !allocate(S(nk))      
-        !allocate(U(r,nk)) 
-        !allocate(V(r,nj))
-        !allocate(c(nj))
-        !allocate(fk(nk))
-        !allocate(xsub(nj))
-        !allocate(x(nj))
-        !allocate(k(nk))
-        !allocate(ksub(nk))
         
         arr(1)=3600
         arr(2)=60
@@ -49,7 +33,7 @@
 
         iflag=-1
         eps=1d-4
-        num=1
+        num=100
         open(unit = 10,file = 'Ur3.txt')
         read(10,*) U1
         open(unit = 20,file = 'Vr3.txt')
@@ -68,7 +52,7 @@
         U=dcmplx(U1,U2)
         U=conjg(U)
         V=dcmplx(V1,V2)
-  
+
         !print *,'V(1,1:5)=',V(1,1:5)
         !print *,'U(1,1:5)=',U(1,1:5)
         do i = 1,nj

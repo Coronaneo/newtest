@@ -74,4 +74,5 @@ c	enddo
         enddo
 	!S = sum(U*N(:,ksub),1)
 
+        return
 	end subroutine
