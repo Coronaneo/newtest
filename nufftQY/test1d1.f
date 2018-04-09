@@ -1,18 +1,17 @@
 	program test
 	implicit none
         integer nj,ns,r,mm,kflag
-        parameter (r=12,ns=131072,kflag=-1)
+        parameter (r=12,ns=128,kflag=-1)
         parameter (nj=ns)
-        integer i,iflag,ier,num
-        integer,allocatable :: xsub(:)
+        integer i,iflag,xsub(nj),ier,num
         real*16 begin1,end1
         integer*8  time_begin,time_end,countrage,countmax
-        real*16,allocatable :: U1(:,:),V1(:,:),U2(:,:),V2(:,:),x(:)
-        real*16 pi,time1,time2
+        real*16 U1(r,ns),V1(r,nj),U2(r,ns),V2(r,nj)
+        real*16 x(nj),pi,time1,time2
         real*16 arr(4)
         parameter (pi=3.141592653589793238462643383279502884197d0)
-        complex*16,allocatable :: U(:,:),V(:,:),c(:),S(:)
-        complex*16,allocatable :: fk(:)
+        complex*16 U(r,ns),V(r,nj),c(nj),S(ns)
+        complex*16 fk(ns)
         complex*16,allocatable :: UU(:,:)
         real*8 x1(nj),eps,error
         double complex in1, out1
@@ -26,19 +25,6 @@
         character*10 time
         character*5 zone 
         integer*4 values1(8),values2(8)
-
-        allocate(U1(r,ns))
-        allocate(U2(r,ns)) 
-        allocate(V1(r,nj))
-        allocate(V2(r,nj))
-        allocate(x1(nj))
-        allocate(S(ns))      
-        allocate(U(r,ns)) 
-        allocate(V(r,nj))
-        allocate(c(nj))
-        allocate(fk(ns))
-        allocate(xsub(nj))
-        allocate(x(nj))
         
         arr(1)=3600
         arr(2)=60
@@ -47,8 +33,8 @@
 
 
         iflag=-1
-        eps=1E-4
-        num=100
+        eps=1E-12
+        num=1000
         open(unit = 10,file = 'Ur1.txt')
         read(10,*) U1
         open(unit = 20,file = 'Vr1.txt')

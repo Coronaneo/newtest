@@ -2,27 +2,24 @@
 	implicit none
         
         integer r
-        parameter (r=559)
+        parameter (r=125)
         integer ms
-        parameter (ms=48)
+        parameter (ms=12)
         integer nj
         parameter (nj=ms*ms*ms)
-        integer i,iflag,ier,num,j
-        integer,allocatable :: xsub(:,:),xxsub(:)
+        integer i,iflag,xsub(nj,3),ier,num,j,xxsub(nj)
         integer n1,n2,mt,k1,k2,mm,k3
         real*16 begin1,end1
         integer*8  time_begin,time_end,countrage,countmax
-        real*16,allocatable :: U1(:,:),V1(:,:),U2(:,:),V2(:,:)
-        real*16 time1,time2
+        real*16 U1(r,ms*ms*ms),V1(r,nj),U2(r,ms*ms*ms),V2(r,nj)
+        real*16 re1(nj),re2(nj),time1,time2
         real*16 arr(4)
-        real*8 pi
-        real*8,allocatable :: xj(:),yj(:),zj(:)
+        real*8 pi,xj(nj),yj(nj),zj(nj)
         parameter (pi=3.141592653589793238462643383279502884197d0)
-        complex*16,allocatable :: U(:,:),V(:,:),cj(:),S(:)
-        complex*16,allocatable :: fk(:,:,:),fk1(:),uu(:,:,:,:)
+        complex*16 U(ms*ms*ms,r),V(r,nj),cj(nj),S(ms*ms*ms),re(nj)
+        complex*16 fk(ms,ms,ms),fk1(ms*ms*ms),uu(ms,ms,ms,r)
         complex*16,allocatable :: NN(:,:,:,:)
-        real*8 eps,error
-        real*8,allocatable :: x(:,:)
+        real*8 x(nj,3),eps,error
         double complex in1, out1
         dimension in1(ms,ms,ms), out1(ms,ms,ms)
 	integer*16 :: plan
@@ -34,24 +31,7 @@
         character*10 time
         character*5 zone 
         integer*4 values1(8),values2(8)
-       
-        allocate(U1(r,ms*ms*ms))
-        allocate(U2(r,ms*ms*ms)) 
-        allocate(V1(r,nj))
-        allocate(V2(r,nj))
-        allocate(xj(nj))
-        allocate(yj(nj))
-        allocate(zj(nj))
-        allocate(S(ms*ms*ms))
-        allocate(fk1(ms*ms*ms))        
-        allocate(U(ms*ms*ms,r)) 
-        allocate(V(r,nj))
-        allocate(cj(nj))
-        allocate(fk(ms,ms,ms))
-        allocate(uu(ms,ms,ms,r))
-        allocate(xsub(nj,3))
-        allocate(xxsub(nj))
-        allocate(x(nj,3))
+        
         arr(1)=3600
         arr(2)=60
         arr(3)=1
@@ -59,8 +39,8 @@
 
 
         iflag=-1
-        eps=1E-4
-        num=1
+        eps=1E-12
+        num=100
         
         open(unit = 10,file = 'U3r1.txt')
         read(10,*) U1
