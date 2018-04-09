@@ -2,9 +2,9 @@
 	implicit none
         
         integer r,kflag
-        parameter (r=125,kflag=-1)
-        integer ms
-        parameter (ms=12)
+        parameter (r=480,kflag=-1)
+        integer ms,n3
+        parameter (ms=32,n3=24)
         integer nj
         parameter (nj=ms*ms*ms)
         integer i,xsub(nj,3),ier,num,j,xxsub(nj)
@@ -16,7 +16,7 @@
         real*16 arr(4)
         real*8 pi,xj(nj),yj(nj),zj(nj)
         parameter (pi=3.141592653589793238462643383279502884197d0)
-        complex*16 U(nj,r),V(r,ms*ms*ms),cj(nj),S(nj),re(nj)
+        complex*16 U(nj,r),V(r,ms*ms*ms),cj(ms*ms*ms),S(nj),re(nj)
         complex*16 fk(ms,ms,ms),fk1(nj),uu(ms,ms,ms,r)
         complex*16,allocatable :: NN(:,:,:,:)
         real*8 x(nj,3),eps,error
@@ -92,13 +92,20 @@
         !print *,V(2,:)
         !print *,U(1,:)
         
+        do k3 = -n3/2,(n3-1)/2
+	 do k1 = -n3/2, (n3-1)/2
+	   do k2 = -n3/2, (n3-1)/2
+	      j =  (k1+n3/2+1) + (k2+n3/2)*n3 + (k3+n3/2)*n3*n3
+	      xj(j) = pi*dcos(-pi*k1/n3)
+	      yj(j) = pi*dcos(-pi*k2/n3)
+	      zj(j) = pi*dcos(-pi*k3/n3)
+	   enddo
+	 enddo
+        enddo
         do k3 = -ms/2,(ms-1)/2
 	 do k1 = -ms/2, (ms-1)/2
 	   do k2 = -ms/2, (ms-1)/2
 	      j =  (k1+ms/2+1) + (k2+ms/2)*ms + (k3+ms/2)*ms*ms
-	      xj(j) = pi*dcos(-pi*k1/ms)
-	      yj(j) = pi*dcos(-pi*k2/ms)
-	      zj(j) = pi*dcos(-pi*k3/ms)
 	      cj(j) = dcmplx(dsin(pi*j/ms),dcos(pi*j/ms))
 	   enddo
 	 enddo

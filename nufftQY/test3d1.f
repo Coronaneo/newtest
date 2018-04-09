@@ -2,11 +2,11 @@
 	implicit none
         
         integer r
-        parameter (r=125)
-        integer ms
-        parameter (ms=12)
+        parameter (r=480)
+        integer ms,n3
+        parameter (ms=32,n3=24)
         integer nj
-        parameter (nj=ms*ms*ms)
+        parameter (nj=n3*n3*n3)
         integer i,iflag,xsub(nj,3),ier,num,j,xxsub(nj)
         integer n1,n2,mt,k1,k2,mm,k3
         real*16 begin1,end1
@@ -88,14 +88,14 @@
         !U=conjg(U)
         !print *,V(2,:)
         !print *,U(1,:)
-        do k3 = -ms/2,(ms-1)/2
-	 do k1 = -ms/2, (ms-1)/2
-	   do k2 = -ms/2, (ms-1)/2
-	      j =  (k1+ms/2+1) + (k2+ms/2)*ms + (k3+ms/2)*ms*ms
-	      xj(j) = pi*dcos(-pi*k1/ms)
-	      yj(j) = pi*dcos(-pi*k2/ms)
-	      zj(j) = pi*dcos(-pi*k3/ms)
-	      cj(j) = dcmplx(dsin(pi*j/ms),dcos(pi*j/ms))
+        do k3 = -n3/2,(n3-1)/2
+	 do k1 = -n3/2, (n3-1)/2
+	   do k2 = -n3/2, (n3-1)/2
+	      j =  (k1+n3/2+1) + (k2+n3/2)*n3 + (k3+n3/2)*n3*n3
+	      xj(j) = pi*dcos(-pi*k1/n3)
+	      yj(j) = pi*dcos(-pi*k2/n3)
+	      zj(j) = pi*dcos(-pi*k3/n3)
+	      cj(j) = dcmplx(dsin(pi*j/n3),dcos(pi*j/n3))
 	   enddo
 	 enddo
         enddo
